@@ -1,0 +1,12 @@
+[
+    {
+        "amount": 101.0,
+        "category": "food",
+        "description": "idly"
+    },
+    {
+        "amount": 202.0,
+        "category": "food",
+        "description": "dinner"
+    }
+]
