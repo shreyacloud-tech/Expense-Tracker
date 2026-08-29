@@ -1,305 +1,27 @@
 # Expense Tracker
 
-A beginner-friendly **Python Expense Tracker** that allows users to add, view, search, calculate, and delete expenses. The application also stores expenses permanently using a JSON file, so data is available even after the program is closed.
+A Python-based command-line application for managing and tracking personal expenses. The application allows users to add, view, search, calculate, and delete expenses through an interactive menu.
 
 ## Features
 
 * Add new expenses
-* View all saved expenses
+* View all expenses
 * Calculate total expenses
-* Search expenses by category
-* Delete an expense
-* Save expenses to a JSON file
-* Load saved expenses when the application starts
-* Input validation and error handling
-* Interactive menu-driven interface
+* Search for expenses
+* Delete expenses
+* Store expense data in JSON format
+* Interactive command-line interface
+* Dockerized application
+* Automated CI using GitHub Actions
 
 ## Technologies Used
 
-* **Python 3**
-* **JSON**
-* **VS Code**
-
-## Python Concepts Practiced
-
-This project was created to practice and strengthen the following Python concepts:
-
-* Variables
-* Data types
-* Lists
-* Dictionaries
-* Functions
-* `if`, `elif`, and `else`
-* `while` loops
-* `for` loops
-* `break`
-* `continue`
-* `return`
-* `input()`
-* Type conversion using `float()` and `int()`
-* String methods:
-
-  * `strip()`
-  * `lower()`
-* String searching using `in`
-* List methods:
-
-  * `append()`
-  * `pop()`
-* `enumerate()`
-* Exception handling using:
-
-  * `try`
-  * `except`
-  * `ValueError`
-  * `FileNotFoundError`
-* Reading and writing files
-* JSON data storage using:
-
-  * `json.dump()`
-  * `json.load()`
-* Global variables
-* Menu-driven programs
-
-## How the Application Works
-
-The application stores expenses inside a Python list.
-
-Each expense is represented as a dictionary containing:
-
-```text
-amount
-category
-description
-```
-
-For example:
-
-```python
-{
-    "amount": 500.0,
-    "category": "Food",
-    "description": "Lunch"
-}
-```
-
-Multiple expense dictionaries are stored inside the `expenses` list.
-
-## Main Functions
-
-### `add_expense()`
-
-Allows the user to enter:
-
-* Expense amount
-* Expense category
-* Expense description
-
-The function validates the amount and prevents invalid or empty input.
-
-### `view_expenses()`
-
-Displays all saved expenses along with their expense number, amount, category, and description.
-
-### `calculate_total()`
-
-Loops through all expenses and calculates the total amount spent.
-
-### `search_expense()`
-
-Allows the user to search for expenses using their category.
-
-The search is case-insensitive, so `Food`, `food`, and `FOOD` can be matched.
-
-### `delete_expense()`
-
-Allows the user to select an expense number and remove it from the list.
-
-The `pop()` method is used to remove the selected expense.
-
-### `save_expenses()`
-
-Saves the current expenses list into `expenses.json` using `json.dump()`.
-
-### `load_expenses()`
-
-Loads previously saved expenses from `expenses.json` using `json.load()`.
-
-If the JSON file does not exist, the program starts with an empty expense list.
-
-### `main()`
-
-Controls the application's menu and allows the user to repeatedly select different operations until they choose Exit.
-
-## Menu
-
-When the application starts, the user sees:
-
-```text
-===== EXPENSE TRACKER =====
-1. Add expense
-2. View expenses
-3. Calculate total
-4. Search expense
-5. Delete expense
-6. Exit
-Enter your choice:
-```
-
-## Sample Output
-
-```text
-===== EXPENSE TRACKER =====
-1. Add expense
-2. View expenses
-3. Calculate total
-4. Search expense
-5. Delete expense
-6. Exit
-
-Enter your choice: 1
-
-Enter amount: 500
-Enter category: Food
-Enter description: Lunch
-
-===== EXPENSE TRACKER =====
-1. Add expense
-2. View expenses
-3. Calculate total
-4. Search expense
-5. Delete expense
-6. Exit
-
-Enter your choice: 2
-
-Expense 1
-Amount: 500.0
-Category: Food
-Description: Lunch
---------------------
-```
-
-### Calculate Total
-
-```text
-Enter your choice: 3
-
-Total Expenses: 500.0
-```
-
-### Search Expense
-
-```text
-Enter your choice: 4
-
-Enter category to search: food
-
-Amount: 500.0
-Category: Food
-Description: Lunch
---------------------
-```
-
-### Delete Expense
-
-```text
-Enter your choice: 5
-
-Enter expense number to delete: 1
-
-Deleted: Lunch
-```
-
-### Exit
-
-```text
-Enter your choice: 6
-
-Thank you for using Expense Tracker!
-```
-
-## Error Handling
-
-The application handles several types of invalid input.
-
-### Invalid Amount
-
-If the user enters:
-
-```text
-Enter amount: abc
-```
-
-the application displays:
-
-```text
-Please enter a valid number.
-```
-
-Negative or zero amounts are also rejected:
-
-```text
-Amount must be greater than 0.
-```
-
-### Empty Category
-
-If the category is left empty:
-
-```text
-Category cannot be empty.
-```
-
-### Empty Description
-
-If the description is left empty:
-
-```text
-Description cannot be empty.
-```
-
-### Invalid Delete Number
-
-If the user enters an invalid expense number:
-
-```text
-Invalid expense number.
-```
-
-The application also handles non-numeric input using `try` and `except`.
-
-## Data Persistence
-
-The application uses a JSON file named:
-
-```text
-expenses.json
-```
-
-This allows expenses to remain saved even after the program is closed.
-
-The data flow is:
-
-```text
-Python List
-     ↓
-json.dump()
-     ↓
-expenses.json
-```
-
-When the application starts again:
-
-```text
-expenses.json
-     ↓
-json.load()
-     ↓
-Python List
-```
-
-This means the user's expenses are not lost when the program exits.
+* Python 3
+* JSON
+* Docker
+* Git
+* GitHub
+* GitHub Actions
 
 ## Project Structure
 
@@ -308,79 +30,172 @@ Expense-Tracker/
 │
 ├── main.py
 ├── expenses.json
-└── README.md
+├── Dockerfile
+├── .gitignore
+├── README.md
+│
+└── .github/
+    └── workflows/
+        └── ci.yml
 ```
 
-### `main.py`
+## How the Application Works
 
-Contains the complete Python application and all functions.
-
-### `expenses.json`
-
-Stores the expenses permanently in JSON format.
-
-### `README.md`
-
-Contains the project documentation, features, technologies, concepts practiced, and usage information.
-
-## How to Run the Project
-
-### 1. Clone or download the project
-
-Download the project and open the project folder in VS Code.
-
-### 2. Make sure Python is installed
-
-Check your Python installation using:
+The application provides a menu-driven interface:
 
 ```text
+===== EXPENSE TRACKER =====
+
+1. Add expense
+2. View expenses
+3. Calculate total
+4. Search expense
+5. Delete expense
+6. Exit
+```
+
+The user selects an option and performs the required operation.
+
+## Expense Data
+
+Expenses are stored in `expenses.json`.
+
+Each expense contains information such as:
+
+* Expense ID
+* Description
+* Amount
+* Category
+
+Using JSON allows the data to be stored between program executions.
+
+## Python Concepts Used
+
+This project demonstrates:
+
+* Variables
+* Data types
+* Strings
+* Integers and floating-point numbers
+* Lists
+* Dictionaries
+* Functions
+* Function parameters
+* Return values
+* `if`, `elif`, and `else`
+* `for` loops
+* `while` loops
+* `break`
+* User input
+* Type conversion
+* Searching data
+* Updating and deleting data
+* JSON file handling
+* Exception handling
+
+## Running the Application Locally
+
+Make sure Python is installed.
+
+Check the Python version:
+
+```bash
 python --version
 ```
 
-### 3. Run the application
+Run the application:
 
-Open the VS Code terminal inside the project folder and run:
-
-```text
+```bash
 python main.py
 ```
 
-The Expense Tracker menu will appear in the terminal.
+## Docker
+
+The application is containerized using Docker.
+
+### Build the Docker Image
+
+From the project directory:
+
+```bash
+docker build -t expense-tracker .
+```
+
+### Run the Docker Container
+
+Because the application requires interactive user input, run the container using interactive mode:
+
+```bash
+docker run -it --rm expense-tracker
+```
+
+The Expense Tracker menu will appear inside the container.
+
+### Stop the Application
+
+Select option `6` from the menu to exit the application.
+
+## GitHub Actions
+
+This project uses **GitHub Actions** for Continuous Integration (CI).
+
+The workflow is located at:
+
+```text
+.github/workflows/ci.yml
+```
+
+The workflow runs automatically when changes are pushed to the `main` branch or when a pull request is created.
+
+### CI Pipeline
+
+The GitHub Actions workflow:
+
+1. Checks out the repository
+2. Sets up Python 3.12
+3. Installs the required `psutil` dependency
+4. Checks the Python syntax using `py_compile`
+
+The workflow helps verify that the Python application can be checked automatically whenever changes are pushed.
+
+## Git Workflow
+
+The project is managed using Git and GitHub.
+
+Common commands used during development:
+
+```bash
+git status
+git add .
+git commit -m "Update project"
+git push
+```
+
+## What I Learned
+
+Through this project, I practiced building a complete Python command-line application and managing data using JSON.
+
+I also learned how to containerize a Python application using Docker and automate basic testing and validation using GitHub Actions.
+
+This project helped me understand how application development can be combined with basic DevOps practices such as version control, containerization, and continuous integration.
 
 ## Future Improvements
 
-Possible improvements for future versions include:
+Possible improvements include:
 
-* Add expense dates
-* Edit existing expenses
-* Filter expenses by date
-* Show monthly spending
-* Add category-wise totals
-* Add a graphical user interface
-* Add charts for expense analysis
+* Add expense categories and filtering
+* Add monthly expense reports
 * Export expenses to CSV
-* Add a budget feature
-* Add user authentication
-* Add a database such as SQLite
-
-## Learning Outcome
-
-This project helped strengthen practical Python programming skills by combining multiple concepts into one complete application.
-
-The project demonstrates how to:
-
-1. Store data using lists and dictionaries.
-2. Organize code using functions.
-3. Use loops and conditional statements.
-4. Validate user input.
-5. Handle errors using exceptions.
-6. Read and write files.
-7. Store persistent data using JSON.
-8. Build an interactive menu-driven application.
-9. Combine multiple Python concepts into a real-world project.
+* Add graphical charts
+* Connect the application to a database
+* Add automated unit tests
+* Create a web-based interface
+* Deploy the application to the cloud
 
 ## Author
 
-**Shreya**
+Salla Shreya
 
-This project was created as part of my Python learning and practical project development.
+## Project Status
+
+Completed
